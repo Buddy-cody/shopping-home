@@ -38,7 +38,7 @@ function App() {
   );
 
     setFilterProducts(results);
-  }, [search]);
+  }, [search,products]);
 
   const sortByPrice = (data) => {
     let productsDataCopy;
