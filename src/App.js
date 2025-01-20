@@ -24,21 +24,28 @@ function App() {
   }
 
   function handleCategoryChange(e){
-    if(e.target.value === 'all'){
-      LoadProducts("https://fakestoreapi.com/products");
-    }else{
-    LoadProducts(`https://fakestoreapi.com/products/category/${e.target.value}`)
-  }}
+     let category = e.target.value;
+     if (category === "all") {
+       LoadProducts("https://fakestoreapi.com/products");
+     } else {
+       LoadProducts(
+         `https://fakestoreapi.com/products/category/${e.target.value}`
+       );
+     }}
 
   useEffect(() => {
     LoadCategory();
     LoadProducts("https://fakestoreapi.com/products");
-  let results = products.filter((product) =>
-    product.title.toLowerCase().includes(search.toLowerCase())
-  );
 
-    setFilterProducts(results);
-  }, [search,products]);
+  }, []);
+
+   useEffect(() => {
+     let results = products.filter((product) =>
+       product.title.toLowerCase().includes(search.toLowerCase())
+     );
+
+     setFilterProducts(results);
+   }, [search, products]);
 
   const sortByPrice = (data) => {
     let productsDataCopy;
